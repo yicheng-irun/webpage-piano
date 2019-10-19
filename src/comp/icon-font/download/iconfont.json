@@ -1,0 +1,163 @@
+{
+  "id": "1224052",
+  "name": "xiwnn",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "36599",
+      "name": "键盘",
+      "font_class": "jianpan",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "88046",
+      "name": "down2",
+      "font_class": "down",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "88062",
+      "name": "left",
+      "font_class": "left",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "88077",
+      "name": "right",
+      "font_class": "right",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "88091",
+      "name": "up2",
+      "font_class": "up",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "397950",
+      "name": "录音",
+      "font_class": "luyin",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "403218",
+      "name": "edit",
+      "font_class": "edit",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "564380",
+      "name": "ok",
+      "font_class": "ok",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "705682",
+      "name": "拼图",
+      "font_class": "pintu",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "845792",
+      "name": "心",
+      "font_class": "zan",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
+    },
+    {
+      "icon_id": "880163",
+      "name": "评论",
+      "font_class": "pinglun",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "974272",
+      "name": "close",
+      "font_class": "close",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "1314419",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "1368580",
+      "name": "delete",
+      "font_class": "delete",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "2620604",
+      "name": "record",
+      "font_class": "record",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "5330400",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e77e",
+      "unicode_decimal": 59262
+    },
+    {
+      "icon_id": "5428546",
+      "name": "stop",
+      "font_class": "stop",
+      "unicode": "e71e",
+      "unicode_decimal": 59166
+    },
+    {
+      "icon_id": "6129071",
+      "name": "29感叹号",
+      "font_class": "danger",
+      "unicode": "e765",
+      "unicode_decimal": 59237
+    },
+    {
+      "icon_id": "6812477",
+      "name": "celebration_piano",
+      "font_class": "celebration_piano",
+      "unicode": "ef25",
+      "unicode_decimal": 61221
+    },
+    {
+      "icon_id": "7685193",
+      "name": "pause",
+      "font_class": "pause",
+      "unicode": "e718",
+      "unicode_decimal": 59160
+    },
+    {
+      "icon_id": "9270574",
+      "name": "play",
+      "font_class": "play",
+      "unicode": "ef26",
+      "unicode_decimal": 61222
+    },
+    {
+      "icon_id": "11080361",
+      "name": "29感叹号",
+      "font_class": "info",
+      "unicode": "f3c2",
+      "unicode_decimal": 62402
+    }
+  ]
+}

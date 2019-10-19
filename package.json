@@ -9,12 +9,15 @@
   },
   "dependencies": {
     "core-js": "^3.1.2",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.3",
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",
     "@vue/cli-plugin-eslint": "^4.0.4",
     "@vue/cli-service": "^4.0.0",
+    "@vue/eslint-config-airbnb": "^4.0.0",
     "@vue/eslint-config-prettier": "^5.0.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
@@ -22,22 +25,8 @@
     "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
+    "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.6.10"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended",
-      "@vue/prettier"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
   },
   "postcss": {
     "plugins": {
@@ -52,7 +41,7 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,vue}": [
+    "*.{1js,1vue}": [
       "vue-cli-service lint",
       "git add"
     ]
