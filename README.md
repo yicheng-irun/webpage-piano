@@ -1,5 +1,5 @@
 # webpage-piano
-> A web page piano. Used HTML5.
+> A web page piano. Html5 piano. 网页钢琴，html5钢琴，js piano.
 
 [Visit Online Demo>>>](https://www.xiwnn.com/piano/)
 [![https://www.xiwnn.com/piano/](./doc-assets/demo.png "https://www.xiwnn.com/piano/")](https://www.xiwnn.com/piano/)
