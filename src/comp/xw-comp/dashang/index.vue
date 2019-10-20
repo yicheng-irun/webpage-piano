@@ -29,7 +29,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: '谢谢钢琴家们的打赏~ 助我早日脱离工厂流水线',
+      default: '谢谢钢琴家们的打赏~ 我会加倍努力的哒',
     },
   },
   data() {
