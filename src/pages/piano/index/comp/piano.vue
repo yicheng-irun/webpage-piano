@@ -86,8 +86,7 @@ export default {
       this.loading = true;
       try {
         await loadSoundfont({
-          soundfontUrl: 'https://cdn.jsdelivr.net/gh/gleitz/midi-js-soundfonts@gh-pages/MusyngKite',
-          // soundfontUrl: '/js/piano/soundfont',
+          soundfontUrl: '/js/piano/soundfont',
           instrument: 'acoustic_grand_piano',
           onProgress: (type, loaded) => {
             if (type === 'mp3') {
