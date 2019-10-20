@@ -7,23 +7,19 @@
 
 
 
-## Project setup
+## Project setup 安装
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development 开发
 ```
 npm run serve
 ```
 then browser http://localhost:8080/
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
+### Lints and fixes files  修复eslint格式
 ```
 npm run lint
 ```

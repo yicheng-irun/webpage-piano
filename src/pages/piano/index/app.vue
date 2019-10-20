@@ -24,9 +24,7 @@ export default {
       return this.$store.state;
     },
   },
-
   mounted() {},
-
   methods: {},
 };
 </script>
