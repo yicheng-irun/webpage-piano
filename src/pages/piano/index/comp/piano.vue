@@ -96,11 +96,11 @@ export default {
             }
           },
         });
-        this.loadmsg = '加载音频中...';
+        this.loadmsg = 'loading...';
         await tryInitAudioContext();
-        this.loadmsg = '资源加载成功';
+        this.loadmsg = 'load resources success';
       } catch (e) {
-        this.loadmsg = '资源加载失败';
+        this.loadmsg = 'load resources ERROR';
         // console.log(e);
       }
       setTimeout(() => {
