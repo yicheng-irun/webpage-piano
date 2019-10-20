@@ -1,6 +1,12 @@
 # webpage-piano
 > A web page piano. Used HTML5.
 
+[Visit Online Demo>>>](https://www.xiwnn.com/piano/)
+[![https://www.xiwnn.com/piano/](./doc-assets/demo.png "https://www.xiwnn.com/piano/")](https://www.xiwnn.com/piano/)
+
+
+
+
 ## Project setup
 ```
 npm install
@@ -20,6 +26,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
