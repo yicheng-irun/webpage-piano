@@ -8,6 +8,11 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "author": {
+    "name": "yicheng",
+    "email": "yicheng-me@qq.com",
+    "url": "https://www.xiwnn.com/"
+  },
   "dependencies": {
     "axios": "^0.19.0",
     "core-js": "^3.1.2",
