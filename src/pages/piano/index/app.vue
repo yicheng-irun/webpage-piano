@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import piano from "./comp/piano.vue";
-import store from "./store";
+import piano from './comp/piano.vue';
+import store from './store';
 
 export default {
-  name: "App",
+  name: 'App',
 
   components: {
-    piano
+    piano,
   },
 
   store,
@@ -22,12 +22,12 @@ export default {
   computed: {
     state() {
       return this.$store.state;
-    }
+    },
   },
 
   mounted() {},
 
-  methods: {}
+  methods: {},
 };
 </script>
 

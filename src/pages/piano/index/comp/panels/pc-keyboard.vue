@@ -1,3 +1,5 @@
+
+
 <template>
   <div>
     <div ref="keyboardCT" class="pc-kbd-ct">
@@ -116,26 +118,32 @@
 </template>
 
 <script>
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-shadow */
+/* eslint-disable guard-for-in */
+
 /**
  * 电脑键盘映射设置
  * 在屏幕上列一个键盘吧，列出所有可用的键和对应的键code
  */
-import pcKeyboardSave from "./pc-keyboard-save.vue";
-import xwButton from "@/comp/xw-comp/xw-button.vue";
-import { onEvent, offEvent, keyDown, keyUp, getKeyConfig } from "../keyboard-pc.js";
-import { keyNameList } from "../keyboard.js";
-import { keypress } from "../piano-control";
-import faq from "../comp/faq.vue";
-import pckey2key, { pckey2keyType2 } from "../../pckey-key";
-import xwMessage from "@/comp/xw-comp/xw-message.js";
+import pcKeyboardSave from './pc-keyboard-save.vue';
+import xwButton from '@/comp/xw-comp/xw-button.vue';
+import {
+  onEvent, offEvent, keyDown, keyUp, getKeyConfig,
+} from '../keyboard-pc';
+import { keyNameList } from '../keyboard';
+import { keypress } from '../piano-control';
+import faq from '../comp/faq.vue';
+import pckey2key, { pckey2keyType2 } from '../../pckey-key';
+import xwMessage from '@/comp/xw-comp/xw-message';
 
 const domArray = new Array(256);
 const keyNameArray = new Array(256);
 
 const kbdMain = getKeyConfig();
 
-kbdMain.forEach(item => {
-  item.forEach(element => {
+kbdMain.forEach((item) => {
+  item.forEach((element) => {
     if (element.d !== 1) {
       keyNameArray[element.c] = element;
     }
@@ -146,16 +154,14 @@ export default {
   components: {
     xwButton,
     pcKeyboardSave,
-    pcKeyboardSaveSys: () => {
-      return import("./pc-keyboard-save-sys.vue");
-    },
-    faq
+    pcKeyboardSaveSys: () => import('./pc-keyboard-save-sys.vue'),
+    faq,
   },
   data() {
     return {
       kbdMain,
       editState: false,
-      selectedKey: 0
+      selectedKey: 0,
     };
   },
   computed: {},
@@ -176,36 +182,35 @@ export default {
       if (by === 1 && this.editState && this.selectedKey !== 0 && keys.length) {
         const [key] = keys;
         const {
-          cacheConf: { pckey2key }
+          cacheConf: { pckey2key },
         } = this.$store.state;
         this.$set(pckey2key, this.selectedKey, key);
-        window._paq && window._paq.push(["trackEvent", "piano", "点击", "设置按键"]);
       }
     },
     getEqualName(pcKey) {
       const {
-        cacheConf: { pckey2key }
+        cacheConf: { pckey2key },
       } = this.$store.state;
       const key = pckey2key[pcKey];
       if (key && keyNameList[key]) {
         return `♩ = ${keyNameList[key]}`;
       }
-      return "";
+      return '';
     },
     getName(pcKey) {
       const {
-        cacheConf: { pckey2key }
+        cacheConf: { pckey2key },
       } = this.$store.state;
       const key = pckey2key[pcKey];
       if (key && keyNameList[key]) {
         return keyNameList[key];
       }
-      return "";
+      return '';
     },
     getKeyIndex(pcKey) {
       // 通过pc键盘的key获取对应的钢琴键盘的key
       const {
-        cacheConf: { pckey2key }
+        cacheConf: { pckey2key },
       } = this.$store.state;
       const key = pckey2key[pcKey];
       return key;
@@ -214,25 +219,25 @@ export default {
       if (keyNameArray[key]) {
         return keyNameArray[key].n;
       }
-      return "";
+      return '';
     },
     getPcKeyWidth(key) {
       if (keyNameArray[key] && keyNameArray[key].w) {
         return `${keyNameArray[key].w}px`;
       }
-      return "";
+      return '';
     },
     bindDomClickEvent(dom, key) {
       let isdown = false;
       dom.addEventListener(
-        "mousedown",
-        e => {
+        'mousedown',
+        (e) => {
           isdown = true;
           keyDown(key);
           e.stopPropagation();
           e.preventDefault();
         },
-        true
+        true,
       );
       function up(e) {
         if (isdown) {
@@ -242,18 +247,18 @@ export default {
         e.stopPropagation();
         e.preventDefault();
       }
-      dom.addEventListener("mouseleave", up, true);
-      dom.addEventListener("mouseup", up, true);
+      dom.addEventListener('mouseleave', up, true);
+      dom.addEventListener('mouseup', up, true);
     },
     bindCommentEvent() {},
     bindToArray() {
       const { keyboardCT } = this.$refs;
-      for (let index = 0; index < keyboardCT.children.length; index++) {
+      for (let index = 0; index < keyboardCT.children.length; index += 1) {
         const element = keyboardCT.children[index];
-        for (let j = 0; j < element.children.length; j++) {
+        for (let j = 0; j < element.children.length; j += 1) {
           const element2 = element.children[j];
-          if (!element2.getAttribute("disable")) {
-            const name = element2.getAttribute("name");
+          if (!element2.getAttribute('disable')) {
+            const name = element2.getAttribute('name');
             const key = parseInt(name, 10);
             domArray[key] = element2;
             this.bindDomClickEvent(element2, key);
@@ -265,58 +270,53 @@ export default {
       const element = domArray[which];
       if (element) {
         if (isDown) {
-          element.classList.add("d");
+          element.classList.add('d');
           if (this.editState) {
             this.selectedKey = which;
           }
         } else {
-          element.classList.remove("d");
+          element.classList.remove('d');
         }
       }
     },
     upgradeYin() {
       const {
-        cacheConf: { pckey2key }
+        cacheConf: { pckey2key },
       } = this.$store.state;
       for (const i in pckey2key) {
         const t = parseInt(i, 10);
         if (t) {
-          pckey2key[t] = pckey2key[t] + 1;
+          pckey2key[t] += 1;
         }
       }
-      window._paq && window._paq.push(["trackEvent", "piano", "点击", "升调"]);
-      xwMessage.success("升调成功");
+      xwMessage.success('升调成功');
     },
     degradeYin() {
       const {
-        cacheConf: { pckey2key }
+        cacheConf: { pckey2key },
       } = this.$store.state;
       for (const i in pckey2key) {
         const t = parseInt(i, 10);
         if (t) {
-          pckey2key[t] = pckey2key[t] - 1;
+          pckey2key[t] -= 1;
         }
       }
-      window._paq && window._paq.push(["trackEvent", "piano", "点击", "降调"]);
-      xwMessage.success("升调成功");
+      xwMessage.success('升调成功');
     },
     clearConfig() {
       this.$store.state.cacheConf.pckey2key = {};
-      window._paq && window._paq.push(["trackEvent", "piano", "点击", "清除配置"]);
-      xwMessage.success("清除成功");
+      xwMessage.success('清除成功');
     },
     restoreConfig() {
       this.$store.state.cacheConf.pckey2key = pckey2key();
-      window._paq && window._paq.push(["trackEvent", "piano", "点击", "还原默认配置"]);
-      xwMessage.success("还原成功");
+      xwMessage.success('还原成功');
     },
     restoreConfig2() {
       // 老版本的
       this.$store.state.cacheConf.pckey2key = pckey2keyType2();
-      window._paq && window._paq.push(["trackEvent", "piano", "点击", "还原成老配置"]);
-      xwMessage.success("还原成功");
-    }
-  }
+      xwMessage.success('还原成功');
+    },
+  },
 };
 </script>
 

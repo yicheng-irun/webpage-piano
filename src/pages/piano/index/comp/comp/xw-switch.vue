@@ -7,20 +7,20 @@
 <script>
 export default {
   model: {
-    prop: "value",
-    event: "change"
+    prop: 'value',
+    event: 'change',
   },
   props: {
-    value: Boolean
+    value: Boolean,
   },
   data() {
     return {};
   },
   methods: {
     trigger() {
-      this.$emit("change", !this.value);
-    }
-  }
+      this.$emit('change', !this.value);
+    },
+  },
 };
 </script>
 

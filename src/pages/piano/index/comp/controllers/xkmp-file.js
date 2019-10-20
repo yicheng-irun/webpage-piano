@@ -11,16 +11,16 @@ export function decodeXKMP(dataString) {
     try {
       const d = JSON.parse(t);
       const result = {};
-      for (const i in d) {
-        const t = parseInt(i, 10);
-        if (t) {
-          result[t] = d[i];
+      Object.keys(d).forEach((i) => {
+        const t2 = parseInt(i, 10);
+        if (t2) {
+          result[t2] = d[i];
         }
-      }
+      });
       return result;
     } catch (e) {
-      throw new Error("文件解析失败，文件格式可能有误");
+      throw new Error('文件解析失败，文件格式可能有误');
     }
   }
-  throw new Error("文件为空或文件格式有误");
+  throw new Error('文件为空或文件格式有误');
 }

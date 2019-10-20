@@ -1,9 +1,5 @@
 <template>
   <div class="visit-ct">
-    <div class="old-entry">
-      <span>感谢您的访问，当前版本是作者重写过的新版本，以前版本：</span>
-      <a href="/piano/v1" target="_blank">由此去👉</a>
-    </div>
     <div class="logo-ct">
       <div class="pn-logo">
         <img src="../../assets/keyboard.png" alt="钢琴键盘" />
@@ -25,27 +21,24 @@ export default {
   data() {
     return {
       tips: [
-        "在上方打开<b>设置</b>面板可调节键盘大小",
-        "试着按下您的电脑键盘，可以用电脑键盘进行弹奏",
-        "在上方打开<b>电脑键盘映射</b>面板可设置 电脑键盘 和 钢琴键盘 的绑定关系。",
-        "您可以在<b>吐槽专区</b>给作者提交反馈哦。",
-        "作者正在开发录制功能，期待吗？"
+        '在上方打开<b>设置</b>面板可调节键盘大小',
+        '试着按下您的电脑键盘，可以用电脑键盘进行弹奏',
+        '在上方打开<b>电脑键盘映射</b>面板可设置 电脑键盘 和 钢琴键盘 的绑定关系。',
+        '您可以在<b>吐槽专区</b>给作者提交反馈哦。',
+        '作者正在开发录制功能，期待吗？',
       ],
       tipIdx: 0,
-      sinterval: 0
+      sinterval: 0,
     };
   },
 
   computed: {
     mainDoc() {
       return this.$store.state.mainDoc;
-    }
+    },
   },
 
   mounted() {
-    // setTimeout(() => {
-    //     /this.showOldEntry = true;
-    // }, 1000);
     this.sinterval = setInterval(() => {
       if (window.innerWidth <= 360) {
         this.slideTips2();
@@ -61,10 +54,10 @@ export default {
 
   methods: {
     slideTips() {
-      this.$refs.tipsDom.setAttribute("class", "hidden");
+      this.$refs.tipsDom.setAttribute('class', 'hidden');
       setTimeout(() => {
         this.tipIdx = (this.tipIdx + 1) % this.tips.length;
-        this.$refs.tipsDom.setAttribute("class", "");
+        this.$refs.tipsDom.setAttribute('class', '');
       }, 300);
     },
     slideTips2() {
@@ -73,20 +66,15 @@ export default {
       }
       this.tipIdx2 = (this.tipIdx2 + 1) % this.tips.length;
       this.$refs.tipsDom.innerHTML = this.tips[this.tipIdx2];
-    }
+    },
     // gotoOld () {
     //     window.location.href = 'http://www.xiwnn.com/piano?t=old';
     // }
-  }
+  },
 };
 </script>
 
 <style lang="stylus">
-.old-entry {
-    margin 8px 20px 0;
-    text-align right;
-    font-size 13px;
-}
 .visit-ct {
     >.logo-ct {
         position relative

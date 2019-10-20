@@ -1,8 +1,8 @@
 /**
  * midi 外设
  */
-import { keypress } from "../piano-control";
-import runtime from "../../../../../lib/runtime";
+import { keypress } from '../piano-control';
+import runtime from '../../../../../lib/runtime';
 
 /**
  * 判断是否支持
@@ -43,7 +43,7 @@ class MidiParser {
   setMidiInputs(inputs) {
     // each time there is a midi message call the onMIDIMessage function
     for (let input = inputs.next(); input && !input.done; input = inputs.next()) {
-      input.value.onmidimessage = msg => {
+      input.value.onmidimessage = (msg) => {
         this.midiMessage(msg);
       };
       this.inputs.push(input.value);
@@ -58,7 +58,7 @@ class MidiParser {
 
   destory() {
     this.enable = false;
-    this.inputs.forEach(item => {
+    this.inputs.forEach((item) => {
       item.onmidimessage = null;
     });
   }
@@ -76,17 +76,17 @@ export function getMidiParse() {
 export function connect() {
   return new Promise((resolve, reject) => {
     navigator.requestMIDIAccess().then(
-      midi => {
+      (midi) => {
         if (midiParser) {
           midiParser.destory();
         }
         midiParser = new MidiParser(midi);
         resolve();
       },
-      (...arg) => {
-        console.error("No access to your midi devices.", arg);
-        reject("访问您的MIDI设备时因无权限而被阻止");
-      }
+      () => {
+        // console.error('No access to your midi devices.', arg);
+        reject(new Error('No access to your midi devices.'));
+      },
     );
   });
 }

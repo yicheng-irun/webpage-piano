@@ -21,18 +21,21 @@
 </template>
 
 <script>
-import { isSupport, connect, disConnect, getMidiParse } from "../controllers/midi-peripheral";
-import xwButton from "../../../../../comp/xw-comp/xw-button";
+import {
+  isSupport, connect, disConnect, getMidiParse,
+} from '../controllers/midi-peripheral';
+import xwButton from '../../../../../comp/xw-comp/xw-button.vue';
+
 export default {
   components: {
-    xwButton
+    xwButton,
   },
   data() {
     return {
       support: false,
       linked: false,
       deviceInfo: [],
-      errMsg: ""
+      errMsg: '',
     };
   },
   mounted() {
@@ -45,14 +48,12 @@ export default {
         .then(() => {
           this.refreshInfo();
         })
-        .catch(e => {
+        .catch((e) => {
           this.errMsg = `${e}`;
         });
-      window._paq && window._paq.push(["trackEvent", "piano", "点击", "连接midi外设"]);
     },
     doDisconnect() {
       disConnect();
-      window._paq && window._paq.push(["trackEvent", "piano", "点击", "断开midi外设"]);
       this.refreshInfo();
     },
     refreshInfo() {
@@ -60,27 +61,20 @@ export default {
       if (midiParser) {
         this.linked = true;
         const deviceInfo = [];
-        midiParser.inputs.forEach(item => {
+        midiParser.inputs.forEach((item) => {
           deviceInfo.push({
             id: item.id,
             name: item.name,
-            manufacturer: item.manufacturer
+            manufacturer: item.manufacturer,
           });
-          window._paq && window._paq.push(["trackEvent", "piano", "midi连接", `${item.name}`]);
-          window._paq &&
-            window._paq.push(["trackEvent", "piano", "midi厂商", `${item.manufacturer}`]);
         });
         this.deviceInfo = deviceInfo;
-        if (deviceInfo.length === 0) {
-          window._paq && window._paq.push(["trackEvent", "piano", "刷新", "无midi设备"]);
-        }
       } else {
         this.linked = false;
         this.deviceInfo = [];
-        window._paq && window._paq.push(["trackEvent", "piano", "刷新", "无midiParser"]);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

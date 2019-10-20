@@ -1,5 +1,5 @@
-import Base64Binary from "./Base64binary";
-import { MIDI, key2noteList } from "./midi";
+import Base64Binary from './Base64binary';
+import { MIDI, key2noteList } from './midi';
 
 export default class Player {
   constructor(instrument) {
@@ -30,28 +30,28 @@ export default class Player {
     if (!soundfont) {
       throw new Error(`it's not exists soundfound of named ${this.instrument}`);
     }
-    const ctx = this.ctx;
+    const { ctx } = this;
     const promises = [];
-    for (let i = 1; i < 89; i++) {
+    for (let i = 1; i < 89; i += 1) {
       promises.push(
         (() => {
           const name = key2noteList[i];
           const src = soundfont[name];
-          new Promise((resolve, reject) => {
+          return new Promise((resolve, reject) => {
             if (src) {
-              const base64 = src.split(",")[1];
+              const base64 = src.split(',')[1];
               const avbuffer = Base64Binary.decodeArrayBuffer(base64);
-              new Promise((resolve, reject) => {
-                ctx.decodeAudioData(avbuffer, resolve, reject);
+              new Promise((res, rej) => {
+                ctx.decodeAudioData(avbuffer, res, rej);
               })
-                .then(buffer => {
+                .then((buffer) => {
                   this.buffers[i] = buffer;
                   resolve();
                 })
                 .catch(reject);
             }
           });
-        })()
+        })(),
       );
     }
     await Promise.all(promises);
@@ -77,7 +77,7 @@ export default class Player {
       gainNode.gain.linearRampToValueAtTime(3, this.ctx.currentTime + 0.01);
       this.sources[id] = {
         source,
-        gainNode
+        gainNode,
       };
     } else {
       this.prepare();
@@ -87,7 +87,7 @@ export default class Player {
   noteOff(id) {
     if (this.sources[id]) {
       const { source, gainNode } = this.sources[id];
-      const gain = gainNode.gain;
+      const { gain } = gainNode;
       // console.log(gain.value);
       gain.linearRampToValueAtTime(gain.value, this.ctx.currentTime);
       gain.linearRampToValueAtTime(0, this.ctx.currentTime + 0.3);

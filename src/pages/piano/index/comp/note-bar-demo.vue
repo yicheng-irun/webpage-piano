@@ -16,23 +16,22 @@
 </template>
 
 <script>
-import { setNoteBar } from "./size";
-import { barPositionArray } from "./keyboard";
+import { setNoteBar } from './size';
+import { barPositionArray } from './keyboard';
+
 export default {
   data() {
     return {
       height: 0,
       width: 200,
       scale: 1,
-      randomBar: false
+      randomBar: false,
     };
   },
   computed: {
     keyPosition() {
-      return barPositionArray.map(item => {
-        return [item[0], item[1]];
-      });
-    }
+      return barPositionArray.map(item => [item[0], item[1]]);
+    },
   },
   mounted() {
     setNoteBar(this);
@@ -51,8 +50,8 @@ export default {
     randomBarStyle() {
       if (!this.randomBar) {
         return {
-          bottom: "10px",
-          height: "100px"
+          bottom: '10px',
+          height: '100px',
         };
       }
       const height = Math.random() * 100 + 20;
@@ -62,10 +61,10 @@ export default {
         // top: `${top}px`,
         // bottom: '0px',
         bottom: `${bottom}px`,
-        height: `${height}px`
+        height: `${height}px`,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -53,30 +53,31 @@
 </template>
 
 <script>
-import xwButton from "@/comp/xw-comp/xw-button.vue";
-import { start, stop } from "../keyboard-pc.js";
-import { howLong } from "../../../../../lib/string/format-time";
-import { saveFile, chooseFile } from "../../../../../comp/tools/js-file-util";
-import { encodeXKMP, decodeXKMP } from "../controllers/xkmp-file";
-import xwMessage from "@/comp/xw-comp/xw-message.js";
+import xwButton from '@/comp/xw-comp/xw-button.vue';
+import { start, stop } from '../keyboard-pc';
+import { howLong } from '../../../../../lib/string/format-time';
+import { saveFile, chooseFile } from '../../../../../comp/tools/js-file-util';
+import { encodeXKMP, decodeXKMP } from '../controllers/xkmp-file';
+import xwMessage from '@/comp/xw-comp/xw-message';
 
-const KEY_NAME = "kmap";
+const KEY_NAME = 'kmap';
 
 export default {
   components: {
-    xwButton
+    xwButton,
   },
   data() {
     return {
-      inputName: "未命名的存档",
+      inputName: '未命名的存档',
       list: [],
-      listKey: 1
+      listKey: 1,
     };
   },
   mounted() {
     const list = this.loadLocalList();
-    list.forEach(item => {
-      item.key = this.listKey++;
+    list.forEach((item) => {
+      this.listKey += 1;
+      item.key = this.listKey;
     });
     this.list = list;
   },
@@ -96,16 +97,16 @@ export default {
         try {
           const tdata = JSON.parse(data);
           const newKey = {};
-          for (const i in tdata) {
-            const t = parseInt(i, 10);
-            if (t) {
-              newKey[t] = tdata[i];
+          Object.keys(tdata).forEach((i) => {
+            const t2 = parseInt(i, 10);
+            if (t2) {
+              newKey[t2] = tdata[i];
             }
-          }
+          });
+
           this.$store.state.cacheConf.pckey2key = newKey;
           this.inputName = t.name;
-          window._paq && window._paq.push(["trackEvent", "piano", "点击", "使用本地存档"]);
-          xwMessage.success("应用成功");
+          xwMessage.success('应用成功');
         } catch (e) {
           //
         }
@@ -131,15 +132,16 @@ export default {
     },
     getMapData() {
       const {
-        cacheConf: { pckey2key }
+        cacheConf: { pckey2key },
       } = this.$store.state;
       const newKey = {};
-      for (const i in pckey2key) {
+      Object.keys(pckey2key).forEach((i) => {
         const t = parseInt(i, 10);
         if (t) {
           newKey[t] = pckey2key[i];
         }
-      }
+      });
+
       return newKey;
     },
     save() {
@@ -148,36 +150,33 @@ export default {
         key: this.randomKey(),
         name: this.inputName,
         time: Date.now(),
-        data: JSON.stringify(data)
+        data: JSON.stringify(data),
       };
       this.list.unshift(newItem);
       // console.log(JSON.stringify(data, null, '    '));
       this.saveToLocal(this.list);
-      window._paq && window._paq.push(["trackEvent", "piano", "点击", "保存键盘存档"]);
     },
     saveFile() {
       const dataObj = this.getMapData();
       const fileData = encodeXKMP(dataObj);
-      const fileName = this.inputName || "未命名的钢琴映射文件";
-      window._paq && window._paq.push(["trackEvent", "piano", "点击", "另存为本地.xkmp"]);
+      const fileName = this.inputName || '未命名的钢琴映射文件';
       saveFile(fileData, `${fileName}.xkmp`);
     },
     chooseFile() {
-      chooseFile(".xkmp", (dataStr, fileName = "") => {
+      chooseFile('.xkmp', (dataStr, fileName = '') => {
         try {
           const data = decodeXKMP(dataStr);
           const newItem = {
             key: this.randomKey(),
             name: fileName,
             time: Date.now(),
-            data: JSON.stringify(data)
+            data: JSON.stringify(data),
           };
           this.list.unshift(newItem);
           // console.log(JSON.stringify(data, null, '    '));
           this.saveToLocal(this.list);
-          window._paq && window._paq.push(["trackEvent", "piano", "点击", "读取本地.xkmp"]);
         } catch (e) {
-          alert(e);
+          xwMessage.success(e.message || '解析出错');
         }
       });
     },
@@ -186,8 +185,8 @@ export default {
     },
     inputBlur() {
       start();
-    }
-  }
+    },
+  },
 };
 </script>
 

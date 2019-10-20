@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-continue */
 export default class MidiTimeLine {
   constructor() {
     this.timeline = [];
@@ -6,7 +8,7 @@ export default class MidiTimeLine {
 
   reset() {
     this.timeline = new Array(99);
-    for (let i = 0; i < this.timeline.length; i++) {
+    for (let i = 0; i < this.timeline.length; i += 1) {
       this.timeline[i] = [];
     }
   }
@@ -35,8 +37,10 @@ export default class MidiTimeLine {
   }
 
   // 从保存的文件中加载
+  // eslint-disable-next-line class-methods-use-this
   load() {}
 
   // 保存成结构化数据
+  // eslint-disable-next-line class-methods-use-this
   save() {}
 }

@@ -39,15 +39,16 @@
 </template>
 
 <script>
-import xwSwitch from "../comp/xw-switch.vue";
-import { resize } from "../size.js";
-import xwButton from "../../../../../comp/xw-comp/xw-button";
-import settingsMidiPeripheral from "./settings-midi-peripheral.vue";
+import xwSwitch from '../comp/xw-switch.vue';
+import { resize } from '../size';
+import xwButton from '../../../../../comp/xw-comp/xw-button.vue';
+import settingsMidiPeripheral from './settings-midi-peripheral.vue';
+
 export default {
   components: {
     xwSwitch,
     xwButton,
-    settingsMidiPeripheral
+    settingsMidiPeripheral,
   },
   data() {
     return {};
@@ -55,28 +56,15 @@ export default {
   computed: {
     state() {
       return this.$store.state;
-    }
+    },
   },
   watch: {
-    "state.hideNavBar"() {
+    'state.hideNavBar': function _() {
       this.$nextTick(resize);
-      window._paq &&
-        window._paq.push([
-          "trackEvent",
-          "piano",
-          "点击",
-          `${this.state.hideNavBar ? "隐藏" : "显示"}导航栏`
-        ]);
     },
-    "state.cacheConf.showKbdNum"() {
-      window._paq &&
-        window._paq.push([
-          "trackEvent",
-          "piano",
-          "点击",
-          `${this.state.cacheConf.showKbdNum ? "显示" : "隐藏"}键盘数字编号`
-        ]);
-    }
+    'state.cacheConf.showKbdNum': function _() {
+      //
+    },
   },
   mounted() {},
   methods: {
@@ -90,8 +78,6 @@ export default {
       }
       this.state.cacheConf.scale = s;
       this.$nextTick(resize);
-      window._paq &&
-        window._paq.push(["trackEvent", "piano", "点击", `${v < 0 ? "缩小" : "放大"}键盘`]);
     },
     mleft(v) {
       let f = this.state.cacheConf.left;
@@ -107,10 +93,8 @@ export default {
       }
       this.state.cacheConf.left = f;
       resize();
-      window._paq &&
-        window._paq.push(["trackEvent", "piano", "点击", `${v ? "右移" : "左移"}键盘`]);
-    }
-  }
+    },
+  },
 };
 /**
  * 调大调小键盘的按钮

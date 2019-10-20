@@ -1,5 +1,5 @@
 const defaultPckey2keyOld = {
-  //键位对应
+  // 键位对应
   90: 28, // z
   83: 29, // s
   88: 30, // x
@@ -36,7 +36,7 @@ const defaultPckey2keyOld = {
   80: 56, // p
   219: 57, // [
   187: 58, // =
-  221: 59 // ]
+  221: 59, // ]
 };
 
 // for (let i in defaultPckey2keyOld) {
@@ -155,16 +155,16 @@ const defaultPckey2key = {
   219: 57,
   220: 61,
   221: 59,
-  222: 45
+  222: 45,
 };
 
 export default () => ({
-  ...defaultPckey2key
+  ...defaultPckey2key,
 });
 
 /**
  * 老版本的键盘映射
  */
 export const pckey2keyType2 = () => ({
-  ...defaultPckey2keyOld
+  ...defaultPckey2keyOld,
 });

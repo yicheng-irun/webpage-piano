@@ -29,27 +29,29 @@
 </template>
 
 <script>
-import xwButton from "../../../../../../comp/xw-comp/xw-button";
-import xwLoading from "../../../../../../comp/xw-comp/xw-loading";
-import { onEvent, offEvent, startRecord, stopRecord } from "./record-back-end";
+import xwButton from '../../../../../../comp/xw-comp/xw-button.vue';
+import xwLoading from '../../../../../../comp/xw-comp/xw-loading.vue';
+import {
+  onEvent, offEvent, startRecord, stopRecord,
+} from './record-back-end';
 
 export default {
   components: {
     xwButton,
-    xwLoading
+    xwLoading,
   },
   data() {
     return {
-      recording: false
+      recording: false,
     };
   },
   beforeMount() {
-    this.onEvent = status => {
+    this.onEvent = (status) => {
       this.recording = status.recording;
       const { longTime } = status;
       const m = Math.floor(longTime / (1000 * 60)); // 分钟
       const s = Math.floor((longTime % (1000 * 60)) / 1000);
-      let ts = s < 10 ? `0${s}` : String(s);
+      const ts = s < 10 ? `0${s}` : String(s);
       if (this.$refs.recordingLong) {
         this.$refs.recordingLong.innerText = `${m}:${ts}`;
       }
@@ -65,8 +67,8 @@ export default {
     },
     stop() {
       stopRecord();
-    }
-  }
+    },
+  },
 };
 </script>
 

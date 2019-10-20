@@ -1,3 +1,6 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-restricted-syntax */
 /**
  * 键盘按压模型
  */
@@ -27,26 +30,24 @@ export default class KeyPress {
     const newUp = [];
     if (autoUp) {
       tempPressList.fill(0);
-      for (let i of keys) {
+      for (const i of keys) {
         if (i > 0 && i < 89) {
           tempPressList[i] = 1;
         }
       }
-      for (let i = 1; i < 89; i++) {
+      for (let i = 1; i < 89; i += 1) {
         if (tempPressList[i]) {
           if (pressList[i] === 0) {
             pressList[i] = 1;
             newDown.push(i);
           }
-        } else {
-          if (pressList[i] === 1) {
-            pressList[i] = 0;
-            newUp.push(i);
-          }
+        } else if (pressList[i] === 1) {
+          pressList[i] = 0;
+          newUp.push(i);
         }
       }
     } else {
-      for (let i of keys) {
+      for (const i of keys) {
         if (i > 0 && i < 89) {
           if (pressList[i] === 0) {
             newDown.push(i);
@@ -55,14 +56,18 @@ export default class KeyPress {
         }
       }
     }
-    newUp.length && this._do_up(newUp, by);
-    newDown.length && this._do_down(newDown, by);
+    if (newUp.length) {
+      this._do_up(newUp, by);
+    }
+    if (newDown.length) {
+      this._do_down(newDown, by);
+    }
   }
 
   up(keys = [], by = 0) {
     const { pressList } = this;
     const newUp = [];
-    for (let i of keys) {
+    for (const i of keys) {
       if (i > 0 && i < 89) {
         if (pressList[i] === 1) {
           newUp.push(i);
@@ -70,19 +75,23 @@ export default class KeyPress {
         }
       }
     }
-    newUp.length && this._do_up(newUp, by);
+    if (newUp.length) {
+      this._do_up(newUp, by);
+    }
   }
 
   upAll(by = 0) {
     const { pressList } = this;
     const newUp = [];
-    for (let i = 1; i < 89; i++) {
+    for (let i = 1; i < 89; i += 1) {
       if (pressList[i] === 1) {
         pressList[i] = 0;
         newUp.push(i);
       }
     }
-    newUp.length && this._do_up(newUp, by);
+    if (newUp.length) {
+      this._do_up(newUp, by);
+    }
   }
 
   _do_down(keys = [], by) {
@@ -90,7 +99,7 @@ export default class KeyPress {
       try {
         cb(keys, by);
       } catch (e) {
-        console.error(e);
+        // console.error(e);
       }
     }
   }
@@ -100,14 +109,14 @@ export default class KeyPress {
       try {
         cb(keys, by);
       } catch (e) {
-        console.error(e);
+        // console.error(e);
       }
     }
   }
 
   onDown(callback) {
-    if (typeof callback !== "function") {
-      throw new Error("callback is not a function");
+    if (typeof callback !== 'function') {
+      throw new Error('callback is not a function');
     }
     if (this.on_down_cb_list.indexOf(callback) < 0) {
       this.on_down_cb_list.push(callback);
@@ -115,8 +124,8 @@ export default class KeyPress {
   }
 
   onUp(callback) {
-    if (typeof callback !== "function") {
-      throw new Error("callback is not a function");
+    if (typeof callback !== 'function') {
+      throw new Error('callback is not a function');
     }
     if (this.on_up_cb_list.indexOf(callback) < 0) {
       this.on_up_cb_list.push(callback);

@@ -1,4 +1,4 @@
-import { MIDI, key2noteList } from "./midi";
+import { MIDI, key2noteList } from './midi';
 
 export default class Player {
   constructor(instrument) {
@@ -9,7 +9,7 @@ export default class Player {
       throw new Error(`it's not exists soundfound of named ${instrument}`);
     }
     // console.log(soundfont);
-    for (let i = 1; i < 89; i++) {
+    for (let i = 1; i < 89; i += 1) {
       const name = key2noteList[i];
       const src = soundfont[name];
       if (src) {
@@ -17,8 +17,8 @@ export default class Player {
         audio.autoplay = false;
         audio.loop = false;
         audio.src = src;
-        audio.volume;
-        if (i == 40) {
+        // audio.volume;
+        if (i === 40) {
           window.a = audio;
         }
         this.audios[i] = audio;
@@ -43,5 +43,7 @@ export default class Player {
     }
   }
 
-  stopAllNotes() {}
+  // stopAllNotes() {
+  //   //
+  // }
 }

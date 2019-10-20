@@ -14,17 +14,18 @@
   </div>
 </template>
 <script>
-import { offset } from "../../util/index.js";
-import { setKeyBoard } from "./size";
-import { whiteDom, blackDom, getKey } from "./keyboard.js";
-import { keypress } from "./piano-control.js";
+import { offset } from '../../util/index';
+import { setKeyBoard } from './size';
+import { whiteDom, blackDom, getKey } from './keyboard';
+import { keypress } from './piano-control';
+
 export default {
   data() {
     return {
       scale: 1,
       offsetTop: 0,
       offsetLeft: 0,
-      left: 0
+      left: 0,
       // infos: ['asdfasdf', 'aaaa'],
     };
   },
@@ -32,13 +33,13 @@ export default {
   computed: {
     cacheConf() {
       return this.$store.state.cacheConf;
-    }
+    },
   },
 
   mounted() {
     this.init();
     this.initEvent();
-    this.$refs.centerC.innerText = "中央C";
+    this.$refs.centerC.innerText = '中央C';
 
     setKeyBoard(this);
   },
@@ -52,10 +53,10 @@ export default {
       const keyDoms = new Array(89);
 
       function doCache(pdom) {
-        for (let i = 0; i < pdom.children.length; i++) {
+        for (let i = 0; i < pdom.children.length; i += 1) {
           const item = pdom.children[i];
           // item.setAttribute('class', Math.random() < 0.1 ? 'act' : ''); // 方便调试按键按下时显示的样式
-          const key = parseInt(item.getAttribute("data-key"), 10);
+          const key = parseInt(item.getAttribute('data-key'), 10);
           if (key) {
             keyDoms[key] = item;
           }
@@ -68,64 +69,66 @@ export default {
 
     initEvent() {
       // const element = this.$refs.keyboard;
-      const keyboardConatiner = this.$refs.keyboardConatiner;
+      const { keyboardConatiner } = this.$refs;
 
       const mouseEvent = () => {
         let isDown = false;
         keyboardConatiner.addEventListener(
-          "mousedown",
-          e => {
+          'mousedown',
+          (e) => {
             e.stopPropagation();
             e.preventDefault();
             isDown = true;
             // console.log('down');
-            let x = e.pageX - this.offsetLeft;
-            let y = e.pageY - this.offsetTop;
+            const x = e.pageX - this.offsetLeft;
+            const y = e.pageY - this.offsetTop;
             const key = getKey(x / this.scale + this.left, y / this.scale);
-            key && keypress.down([key], true, 1);
+            if (key) {
+              keypress.down([key], true, 1);
+            }
           },
-          true
+          true,
         );
 
         // console.log(this.$parent.$el);
         document.addEventListener(
-          "mousemove",
-          e => {
+          'mousemove',
+          (e) => {
             if (isDown) {
               e.stopPropagation();
               e.preventDefault();
               // console.log('move');
-              let x = e.pageX - this.offsetLeft;
-              let y = e.pageY - this.offsetTop;
+              const x = e.pageX - this.offsetLeft;
+              const y = e.pageY - this.offsetTop;
               const key = getKey(x / this.scale + this.left, y / this.scale);
               keypress.down([key], true, 1);
             }
           },
-          true
+          true,
         );
         document.addEventListener(
-          "mouseup",
-          e => {
+          'mouseup',
+          (e) => {
             if (isDown) {
               e.stopPropagation();
               e.preventDefault();
               // console.log('up');
               isDown = false;
-              let x = e.pageX - this.offsetLeft;
-              let y = e.pageY - this.offsetTop;
+              const x = e.pageX - this.offsetLeft;
+              const y = e.pageY - this.offsetTop;
               const key = getKey(x / this.scale + this.left, y / this.scale);
               keypress.up([key], 1);
             }
           },
-          true
+          true,
         );
       };
 
       const touchEvent = () => {
         let isDown = false;
         keyboardConatiner.addEventListener(
-          "touchstart",
-          e => {
+          'touchstart',
+          (e) => {
             e.stopPropagation();
             e.preventDefault();
             isDown = true;
@@ -134,42 +137,48 @@ export default {
             // this.infos.push(`down ${e.touches.length} ${Date.now()}`);
             const { touches } = e;
             const keys = [];
-            for (let i = 0; i < e.touches.length; i++) {
+            for (let i = 0; i < e.touches.length; i += 1) {
               const pst = touches[i];
-              let x = pst.pageX - this.offsetLeft;
-              let y = pst.pageY - this.offsetTop;
+              const x = pst.pageX - this.offsetLeft;
+              const y = pst.pageY - this.offsetTop;
               const key = getKey(x / this.scale + this.left, y / this.scale);
-              key && keys.push(key);
+              if (key) {
+                keys.push(key);
+              }
             }
-            keys.length && keypress.down(keys, true, 1);
+            if (keys.length) {
+              keypress.down(keys, true, 1);
+            }
           },
-          true
+          true,
         );
 
         // console.log(this.$parent.$el);
         document.addEventListener(
-          "touchmove",
-          e => {
+          'touchmove',
+          (e) => {
             if (isDown) {
               e.stopPropagation();
               e.preventDefault();
               const { touches } = e;
               const keys = [];
-              for (let i = 0; i < e.touches.length; i++) {
+              for (let i = 0; i < e.touches.length; i += 1) {
                 const pst = touches[i];
-                let x = pst.pageX - this.offsetLeft;
-                let y = pst.pageY - this.offsetTop;
+                const x = pst.pageX - this.offsetLeft;
+                const y = pst.pageY - this.offsetTop;
                 const key = getKey(x / this.scale + this.left, y / this.scale);
-                key && keys.push(key);
+                if (key) {
+                  keys.push(key);
+                }
               }
               keypress.down(keys, true, 1);
             }
           },
-          true
+          true,
         );
         document.addEventListener(
-          "touchend",
-          e => {
+          'touchend',
+          (e) => {
             if (isDown) {
               e.stopPropagation();
               e.preventDefault();
@@ -178,12 +187,12 @@ export default {
               }
               const { touches } = e;
               const keys = [];
-              for (let i = 0; i < e.touches.length; i++) {
+              for (let i = 0; i < e.touches.length; i += 1) {
                 const pst = touches[i];
-                let x = pst.pageX - this.offsetLeft;
-                let y = pst.pageY - this.offsetTop;
+                const x = pst.pageX - this.offsetLeft;
+                const y = pst.pageY - this.offsetTop;
                 const key = getKey(x / this.scale + this.left, y / this.scale);
-                key && keys.push(key);
+                if (key) { keys.push(key); }
               }
               keypress.down(keys, true, 1);
               if (touches.length === 0) {
@@ -191,25 +200,25 @@ export default {
               }
             }
           },
-          true
+          true,
         );
       };
 
-      if ("ontouchstart" in window) {
+      if ('ontouchstart' in window) {
         touchEvent();
       }
       mouseEvent();
 
-      keypress.onDown(keys => {
-        for (const i of keys) {
-          this.keyDoms[i].setAttribute("class", "act");
-        }
+      keypress.onDown((keys = []) => {
+        keys.forEach((i) => {
+          this.keyDoms[i].setAttribute('class', 'act');
+        });
       });
 
-      keypress.onUp(keys => {
-        for (const i of keys) {
-          this.keyDoms[i].setAttribute("class", "");
-        }
+      keypress.onUp((keys = []) => {
+        keys.forEach((i) => {
+          this.keyDoms[i].setAttribute('class', '');
+        });
       });
     },
 
@@ -220,8 +229,8 @@ export default {
       this.offsetTop = offsetValue.top + 200;
       this.offsetLeft = offsetValue.left;
       // console.log(offsetValue);
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="stylus">

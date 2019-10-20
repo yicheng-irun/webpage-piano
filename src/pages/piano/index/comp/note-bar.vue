@@ -5,15 +5,16 @@
 </template>
 
 <script>
-import { setNoteBar } from "./size";
-import { drow } from "./note-bar-drow.js";
+import { setNoteBar } from './size';
+import { drow } from './note-bar-drow';
+
 export default {
   data() {
     return {
       height: 0,
       width: 200,
       scale: 1,
-      left: 0
+      left: 0,
     };
   },
 
@@ -42,8 +43,8 @@ export default {
       this.left = l;
       this.$refs.canvas.width = w;
       this.$refs.canvas.height = h;
-    }
-  }
+    },
+  },
 };
 </script>
 

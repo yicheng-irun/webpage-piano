@@ -6,7 +6,7 @@ const noticeCallbacks = [];
 const status = {
   recording: false, // 表示正在录音中
   startTime: 0,
-  longTime: 0
+  longTime: 0,
 };
 
 let itv = 0;
@@ -31,9 +31,9 @@ export function offEvent(cb) {
 function emit(v = {}) {
   const result = {
     ...status,
-    ...v
+    ...v,
   };
-  noticeCallbacks.forEach(item => {
+  noticeCallbacks.forEach((item) => {
     item(result);
   });
 }
@@ -59,7 +59,8 @@ export function stopRecord() {
     return;
   }
   status.recording = false;
+  clearInterval(itv);
   emit({
-    isEnd: true
+    isEnd: true,
   });
 }

@@ -10,16 +10,16 @@ export default {
   props: {
     question: {
       type: String,
-      default: ""
+      default: '',
     },
     answer: {
       type: String,
-      default: ""
-    }
+      default: '',
+    },
   },
   data() {
     return {};
-  }
+  },
 };
 </script>
 

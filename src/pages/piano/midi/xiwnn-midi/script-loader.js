@@ -1,10 +1,11 @@
-import axios from "axios";
-import { getSuportMP3orOGG } from "./detect";
-import { MIDI } from "./midi";
-import { setPlayer } from "./player";
+import axios from 'axios';
+import { getSuportMP3orOGG } from './detect';
+import { MIDI } from './midi';
+import { setPlayer } from './player';
 
 function loadJS(data) {
   window.MIDI = MIDI;
+  // eslint-disable-next-line no-eval
   window.eval(data);
   delete window.MIDI;
 }
@@ -17,9 +18,10 @@ export async function loadSoundfont(options) {
   const result = await axios.get(url, {
     onDownloadProgress(event) {
       onProgress(fileType, event.loaded);
-    }
+    },
   });
   loadJS(result.data);
   setPlayer(instrument);
-  return "ok";
+  return 'ok';
 }
+export default {};

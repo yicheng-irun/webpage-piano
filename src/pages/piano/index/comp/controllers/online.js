@@ -1,10 +1,10 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Simple_RTCDataChannel_sample
 
 export const status = {
-  roomID: "",
+  roomID: '',
   ws: {
-    state: 0 // 0 是未初始化  1：连接中  2：已连接  -1 断开
-  }
+    state: 0, // 0 是未初始化  1：连接中  2：已连接  -1 断开
+  },
 };
 
 function onMessage() {}
@@ -16,8 +16,8 @@ let ws;
 
 async function link() {
   if (status.ws.state < 1) {
-    ws = new WebSocket("/piano/ws");
-    ws.onmessage = buf => {
+    ws = new WebSocket('/piano/ws');
+    ws.onmessage = (buf) => {
       onMessage(buf);
     };
     status.ws.state = 1;
@@ -33,6 +33,7 @@ async function link() {
       };
     });
   }
+  throw new Error('ws 的 state error');
 }
 
 /**
@@ -50,7 +51,7 @@ ${id}
  */
 export async function createRoom() {
   await link();
-  ws.send("createRoom");
+  ws.send('createRoom');
 }
 
 /**

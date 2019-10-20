@@ -45,48 +45,48 @@ import sogou from './icons/sogou.png';
 import uc from './icons/uc.png';
 
 export default {
-    props: {
-        reason: {
-            type: String,
-            default: '',
+  props: {
+    reason: {
+      type: String,
+      default: '',
+    },
+    title: {
+      type: String,
+      default: '您的浏览器版本太低了，没办法正常打开当前页面。',
+    },
+  },
+  data() {
+    return {
+      show: true, // 用户用户隐藏
+      browers: [
+        {
+          name: 'Chorme',
+          href: 'https://pc.qq.com/detail/1/detail_2661.html',
+          img: chorme,
         },
-        title: {
-            type: String,
-            default: '您的浏览器版本太低了，没办法正常打开当前页面。',
-        }
-    },
-    data () {
-        return {
-            show: true, // 用户用户隐藏
-            browers: [
-                {
-                    name: 'Chorme',
-                    href: 'https://pc.qq.com/detail/1/detail_2661.html',
-                    img: chorme
-                },
-                {
-                    name: 'Firefox',
-                    href: 'https://pc.qq.com/detail/11/detail_22931.html',
-                    img: firefox
-                },
-                {
-                    name: 'QQ浏览器',
-                    href: 'https://pc.qq.com/detail/11/detail_351.html',
-                    img: qq
-                },
-                {
-                    name: '搜狗浏览器',
-                    href: 'https://pc.qq.com/detail/7/detail_22127.html',
-                    img: sogou
-                },
-                {
-                    name: 'UC浏览器',
-                    href: 'https://pc.qq.com/detail/13/detail_13993.html',
-                    img: uc
-                },
-            ]
-        };
-    },
+        {
+          name: 'Firefox',
+          href: 'https://pc.qq.com/detail/11/detail_22931.html',
+          img: firefox,
+        },
+        {
+          name: 'QQ浏览器',
+          href: 'https://pc.qq.com/detail/11/detail_351.html',
+          img: qq,
+        },
+        {
+          name: '搜狗浏览器',
+          href: 'https://pc.qq.com/detail/7/detail_22127.html',
+          img: sogou,
+        },
+        {
+          name: 'UC浏览器',
+          href: 'https://pc.qq.com/detail/13/detail_13993.html',
+          img: uc,
+        },
+      ],
+    };
+  },
 };
 </script>
 
@@ -117,7 +117,7 @@ export default {
             font-size 14px;
             padding 8px 0;
             &:hover {
-                background #0002;   
+                background #0002;
             }
         }
     }

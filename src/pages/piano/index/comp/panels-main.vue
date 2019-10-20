@@ -18,29 +18,25 @@
       <visit v-if="select === 0" />
       <settings v-if="select === 1" />
       <pc-keyboard v-if="select === 2" />
-      <pinlun v-if="select === 3" />
-      <study v-if="select === 4" />
       <!-- <record
-                v-if="select===5"
+                v-if="select===3"
             /> -->
     </section>
   </div>
 </template>
 
 <script>
-import visit from "./panels/visit.vue";
+import visit from './panels/visit.vue';
 // import settings from './panels/settings.vue';
-import pcKeyboard from "./panels/pc-keyboard.vue";
-import { setMainPanel } from "./size";
+import pcKeyboard from './panels/pc-keyboard.vue';
+import { setMainPanel } from './size';
 
 export default {
   components: {
     visit,
-    settings: () => import(/* webpackChunkName: "piano/settings" */ "./panels/settings.vue"),
+    settings: () => import(/* webpackChunkName: "piano/settings" */ './panels/settings.vue'),
     pcKeyboard,
-    pinlun: () => import(/* webpackChunkName: "piano/pinlun" */ "./panels/pinlun.vue"),
     // record: () => import(/* webpackChunkName: "piano/record" */'./panels/record/index.vue'),
-    study: () => import(/* webpackChunkName: "piano/study" */ "./panels/study/index.vue")
   },
   data() {
     return {
@@ -50,14 +46,12 @@ export default {
 
       select: 0,
       manus: [
-        ["感谢访问"],
-        ["设置", "icon-shezhi"], // 外接 midi 键盘
-        ["电脑键盘映射", "icon-jianpan"],
-        ["吐槽专区", "icon-pinglun"],
-        ["学习钢琴", ""]
+        ['感谢访问'],
+        ['设置', 'icon-shezhi'], // 外接 midi 键盘
+        ['电脑键盘映射', 'icon-jianpan'],
         // ['音轨录制', 'icon-luyin'],
         // '多人联机模式',
-      ]
+      ],
     };
   },
 
@@ -69,8 +63,6 @@ export default {
     setSelect(idx) {
       if (this.select !== idx) {
         this.select = idx;
-        window._paq &&
-          window._paq.push(["trackEvent", "piano", "点击", `面板:${this.manus[idx][0]}`]);
       }
     },
     setSize(w, h, s) {
@@ -78,8 +70,8 @@ export default {
       this.height = h;
       this.width = w;
       this.scale = s;
-    }
-  }
+    },
+  },
 };
 </script>
 

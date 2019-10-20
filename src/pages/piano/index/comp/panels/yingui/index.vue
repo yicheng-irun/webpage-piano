@@ -22,31 +22,31 @@
 </template>
 
 <script>
-import { heiKeyArray } from "../../keyboard.js";
-import getRepeatImg from "./bg-repeat.js";
-import xwButtonGroup from "../../../../../../comp/xw-comp/xw-button-group";
-import xwButton from "../../../../../../comp/xw-comp/xw-button";
+import { heiKeyArray } from '../../keyboard';
+import getRepeatImg from './bg-repeat';
+import xwButtonGroup from '../../../../../../comp/xw-comp/xw-button-group.vue';
+import xwButton from '../../../../../../comp/xw-comp/xw-button.vue';
 
 export default {
   components: {
     xwButtonGroup,
-    xwButton
+    xwButton,
   },
   data() {
     return {};
   },
   mounted() {
-    let keyDomList = "";
-    heiKeyArray.forEach(element => {
-      keyDomList = '<div class="w"></div>' + keyDomList; // 白键
+    let keyDomList = '';
+    heiKeyArray.forEach((element) => {
+      keyDomList = `<div class="w"></div>${keyDomList}`; // 白键
       if (element > 0) {
-        keyDomList = '<div class="h"></div>' + keyDomList; // 黑键
+        keyDomList = `<div class="h"></div>${keyDomList}`; // 黑键
       }
     });
     this.$refs.keyList.innerHTML = keyDomList;
     const src = getRepeatImg();
     this.$refs.yinguiBg.style.backgroundImage = `url(${src})`;
-  }
+  },
 };
 </script>
 

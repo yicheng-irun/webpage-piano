@@ -31,62 +31,62 @@
 </template>
 
 <script>
-import '../icon-font/';
+import '../icon-font';
 
 let listid = 0;
 export default {
-    data () {
-        return {
-            msgList: [
-                // {
-                //     id: listid++,
-                //     content: 'asdfasdfasdf啊啊啊啊',
-                //     icon: '',
-                // },
-                // {
-                //     id: listid++,
-                //     content: 'asdfasdfasdfaaaaasadf啊啊啊啊234234234234asdfasdfasdfaaaaasadf啊啊啊啊234234234234asdfasdfasdfaaaaasadf啊啊啊啊234234234234',
-                //     icon: '',
-                // },
-                // {
-                //     id: listid++,
-                //     content: 'asdfasdfasdf啊啊啊啊',
-                //     icon: '',
-                // },
-            ],
-        };
-    },
-    methods: {
-        open ({
-            icon,
-            content,
-            duration,
-        }) {
-            const t = {
-                id: listid++,
-                content,
-                icon,
-            };
-            this.msgList.push(t);
+  data() {
+    return {
+      msgList: [
+        // {
+        //     id: listid++,
+        //     content: 'asdfasdfasdf啊啊啊啊',
+        //     icon: '',
+        // },
+        // {
+        //     id: listid++,
+        //     content: 'asdfasdfasdfaaaaasadf啊啊啊啊234234234234asdfasdfasdfaaaaasadf啊啊啊啊234234234234asdfasdfasdfaaaaasadf啊啊啊啊234234234234',
+        //     icon: '',
+        // },
+        // {
+        //     id: listid++,
+        //     content: 'asdfasdfasdf啊啊啊啊',
+        //     icon: '',
+        // },
+      ],
+    };
+  },
+  methods: {
+    open({
+      icon,
+      content,
+      duration,
+    }) {
+      const t = {
+        id: listid++,
+        content,
+        icon,
+      };
+      this.msgList.push(t);
 
-            let time = 5000;
-            if (duration > 0) {
-                time = duration;
-            } else if (duration === 0) {
-                return;
-            }
+      let time = 5000;
+      if (duration > 0) {
+        time = duration;
+      } else if (duration === 0) {
+        return;
+      }
 
-            setTimeout(() => {
-                const index = this.msgList.indexOf(t);
-                if (index >= 0) {
-                    this.msgList.splice(index, 1);
-                }
-            }, time);
-        },
-        close (index) {
-            this.msgList.splice(index, 1);
+      setTimeout(() => {
+        const index = this.msgList.indexOf(t);
+        if (index >= 0) {
+          this.msgList.splice(index, 1);
         }
+      }, time);
     },
+    close(index) {
+      this.msgList.splice(index, 1);
+    },
+  },
 };
 </script>
 
@@ -129,7 +129,7 @@ export default {
                     font-size 15px;
                     >p {
                         word-break break-all
-                        margin 0 0 0 0 
+                        margin 0 0 0 0
                     }
                     >.msg-close {
                         position absolute;

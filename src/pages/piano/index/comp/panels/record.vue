@@ -5,14 +5,15 @@
 </template>
 
 <script>
-import yingui from "./yingui/index.vue";
+import yingui from './yingui/index.vue';
+
 export default {
   components: {
-    yingui
+    yingui,
   },
   data() {
     return {};
-  }
+  },
 };
 </script>
 

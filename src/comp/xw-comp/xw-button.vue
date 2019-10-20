@@ -16,20 +16,20 @@
 
 <script>
 export default {
-    props: {
-        type: {
-            type: String, // primary default danger disable
-            default: '',
-        },
-        selected: {
-            type: Boolean,
-            default: false,
-        },
-        icon: {
-            type: String,
-            default: '',
-        },
+  props: {
+    type: {
+      type: String, // primary default danger disable
+      default: '',
     },
+    selected: {
+      type: Boolean,
+      default: false,
+    },
+    icon: {
+      type: String,
+      default: '',
+    },
+  },
 };
 </script>
 

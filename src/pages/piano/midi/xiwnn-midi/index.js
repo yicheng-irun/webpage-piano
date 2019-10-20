@@ -1,5 +1,5 @@
-import { MIDI as MIDIOBJ } from "./midi";
-import { loadSoundfont as loadSoundfontModule } from "./script-loader";
+import { MIDI as MIDIOBJ } from './midi';
+import { loadSoundfont as loadSoundfontModule } from './script-loader';
 
 export const MIDI = MIDIOBJ;
 
@@ -17,7 +17,7 @@ export function tryInitAudioContext() {
 
 export function noteOn(keys) {
   if (MIDIOBJ.defaultPlayer) {
-    keys.forEach(value => {
+    keys.forEach((value) => {
       MIDIOBJ.defaultPlayer.noteOn(value);
     });
   }
@@ -25,7 +25,7 @@ export function noteOn(keys) {
 
 export function noteOff(keys) {
   if (MIDIOBJ.defaultPlayer) {
-    keys.forEach(value => {
+    keys.forEach((value) => {
       MIDIOBJ.defaultPlayer.noteOff(value);
     });
   }

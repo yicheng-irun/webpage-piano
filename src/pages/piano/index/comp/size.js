@@ -1,10 +1,10 @@
-import runtime from "@/lib/runtime";
+import runtime from '@/lib/runtime';
 
 export const comps = {
   piano: null,
   noteBar: null,
   keyboard: null,
-  settingsPanel: null
+  settingsPanel: null,
 };
 
 const keyboardWidth = 2081;
@@ -15,19 +15,21 @@ export const size = {
   clientWidth: 300,
   scale: 1,
   leftOst: 0,
-  leftScale: 0 // 剩下的scale
+  leftScale: 0, // 剩下的scale
 };
 
 export function resize() {
-  const { piano, noteBar, keyboard, settingsPanel } = comps;
+  const {
+    piano, noteBar, keyboard, settingsPanel,
+  } = comps;
   if (piano && piano.$refs && piano.$refs.piano) {
     const { clientWidth, clientHeight } = piano.$refs.piano;
-    let s = clientWidth / keyboardWidth;
+    const s = clientWidth / keyboardWidth;
     size.clientWidth = clientWidth;
 
     // s < 1 ? s = 1 : 0;
 
-    const cacheConf = piano.$store.state.cacheConf;
+    const { cacheConf } = piano.$store.state;
     const userScale = cacheConf.scale;
     const userLeft = cacheConf.left;
 
@@ -55,7 +57,7 @@ export function resize() {
 }
 
 if (runtime.isClient) {
-  window.addEventListener("resize", resize);
+  window.addEventListener('resize', resize);
 }
 
 export function setNoteBar(nb) {

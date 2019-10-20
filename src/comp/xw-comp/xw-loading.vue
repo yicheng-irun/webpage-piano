@@ -22,30 +22,30 @@
 
 <script>
 export default {
-    props: {
-        loading: {
-            type: Boolean,
-            default: true,
-        },
-        /**
+  props: {
+    loading: {
+      type: Boolean,
+      default: true,
+    },
+    /**
          * 球球的数量
          */
-        num: {
-            type: Number,
-            default: 3,
-        }
+    num: {
+      type: Number,
+      default: 3,
     },
-    data () {
-        return {};
+  },
+  data() {
+    return {};
+  },
+  computed: {
+    tnum() {
+      if (this.num >= 1 && this.num <= 10) {
+        return this.num;
+      }
+      return 3;
     },
-    computed: {
-        tnum () {
-            if (this.num >= 1 && this.num <= 10) {
-                return this.num;
-            }
-            return 3;
-        }
-    },
+  },
 };
 </script>
 

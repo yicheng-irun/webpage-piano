@@ -5,7 +5,7 @@
 export function offset(element) {
   let top = element.offsetTop;
   let left = element.offsetLeft;
-  var parent = element.offsetParent;
+  let parent = element.offsetParent;
   while (parent != null) {
     top += parent.offsetTop;
     left += parent.offsetLeft;
@@ -13,6 +13,8 @@ export function offset(element) {
   }
   return {
     left,
-    top
+    top,
   };
 }
+
+export default {};

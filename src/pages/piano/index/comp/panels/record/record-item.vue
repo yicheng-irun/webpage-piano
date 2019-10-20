@@ -22,17 +22,17 @@
 </template>
 
 <script>
-import xwButton from "../../../../../../comp/xw-comp/xw-button";
-import xwButtonGroup from "../../../../../../comp/xw-comp/xw-button-group";
+import xwButton from '../../../../../../comp/xw-comp/xw-button.vue';
+import xwButtonGroup from '../../../../../../comp/xw-comp/xw-button-group.vue';
 
 export default {
   components: {
     xwButton,
-    xwButtonGroup
+    xwButtonGroup,
   },
   data() {
     return {};
-  }
+  },
 };
 </script>
 
