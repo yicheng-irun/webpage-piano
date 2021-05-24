@@ -170,6 +170,18 @@ export default {
     this.bindToArray();
     onEvent(this.onEvent);
     keypress.onDown(this.onKeypressDown);
+    const that = this;
+
+    document.addEventListener('keydown', function(event) {
+      console.log('### keycode: ', event.keyCode);
+      if (event.keyCode === 20) {
+        that.upgradeYinMax();
+      }
+
+      if (event.keyCode === 16) {
+        that.degradeYinMax();
+      }
+    });
   },
 
   destroyed() {
@@ -298,7 +310,33 @@ export default {
       for (const i in pckey2key) {
         const t = parseInt(i, 10);
         if (t) {
-          pckey2key[t] -= 1;
+          pckey2key[t] -= 12;
+          console.log('### key-code: ', {index: t, code: pckey2key[t]});
+        }
+      }
+      xwMessage.success('升调成功');
+    },
+    upgradeYinMax() {
+      const {
+        cacheConf: { pckey2key },
+      } = this.$store.state;
+      for (const i in pckey2key) {
+        const t = parseInt(i, 10);
+        if (t) {
+          pckey2key[t] += 12;
+          console.log('### key-code: ', {index: t, code: pckey2key[t]});
+        }
+      }
+      xwMessage.success('升调成功');
+    },
+    degradeYinMax() {
+      const {
+        cacheConf: { pckey2key },
+      } = this.$store.state;
+      for (const i in pckey2key) {
+        const t = parseInt(i, 10);
+        if (t) {
+          pckey2key[t] -= 4;
         }
       }
       xwMessage.success('升调成功');
